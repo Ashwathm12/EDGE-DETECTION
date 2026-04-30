@@ -1,4 +1,6 @@
-# edge-detection-opencv
+# Exp 6 - Edge-Detection
+## Name: Ashwath M
+## Register number: 212223230023
 
 ## Aim
 
@@ -47,34 +49,51 @@ Display all edge-detected images for comparison.
 
 ---
 
-## Developed By
+## Program:
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
-- **Name:** ____________________________  
-- **Register No:** ______________________  
+image = cv2.imread('me.jpeg')
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title('Original Image')
+plt.axis('off')
+
+sobel_x = cv2.Sobel(gray_image, cv2.CV_64F, 1, 0, ksize=5) 
+sobel_y = cv2.Sobel(gray_image, cv2.CV_64F, 0, 1, ksize=5)  
+sobel_combined = cv2.magnitude(sobel_x, sobel_y)  
+plt.imshow(sobel_combined, cmap='gray')
+plt.title('Sobel Edge Detection')
+plt.axis('off')
+
+laplacian = cv2.Laplacian(gray_image, cv2.CV_64F)
+plt.imshow(laplacian, cmap='gray')
+plt.title('Laplacian Edge Detection')
+plt.axis('off')
+
+canny_edges = cv2.Canny(gray_image, 50, 150)
+plt.imshow(canny_edges, cmap='gray')
+plt.title('Canny Edge Detection')
+plt.axis('off')  
+``` 
 
 ---
 
 ## Output
 
 ###  Sobel Edge Detector
-- Detects edges in horizontal and vertical directions  
-- Produces gradient-based edge map  
+<img width="371" height="467" alt="image" src="https://github.com/user-attachments/assets/d49d47d2-3742-41b9-9c21-df97e2c4cb71" />
 
-###  Prewitt Edge Detector
-- Similar to Sobel but simpler kernel  
-- Detects directional edges  
-
-###  Roberts Edge Detector
-- Detects edges using diagonal gradients  
-- Sensitive to noise  
 
 ###  Laplacian Edge Detector
-- Detects edges using second-order derivatives  
-- Highlights rapid intensity changes  
+<img width="379" height="463" alt="image" src="https://github.com/user-attachments/assets/d77efbe5-e465-471e-a9e7-e62561a60683" />
+  
 
 ###  Canny Edge Detector
-- Multi-stage edge detection  
-- Produces clean and thin edges  
+<img width="364" height="469" alt="image" src="https://github.com/user-attachments/assets/62048714-8258-4d46-9507-470b564dd727" />
+
 
 ---
 
